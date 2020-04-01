@@ -24,8 +24,7 @@ __all__ = ["TeamsPostJSS"]
 
 
 class TeamsPostJSS(Processor):
-    description = (
-        """Posts to Teams via webhook based on output of JSSImporter.
+    description = """Posts to Teams via webhook based on output of JSSImporter.
         Heavily based on https://github.com/autopkg/asemak-recipes/blob/master/PostProcessors/TeamsPost.py
         Tweaked by jwrn3 for JSSImporter output and updated to py3
         Teams alternative to the post processor provided by Ben Reilly
@@ -38,24 +37,20 @@ class TeamsPostJSS(Processor):
         Takes elements from
         https://gist.github.com/devStepsize/b1b795309a217d24566dcc0ad136f784
         and
-        https://github.com/autopkg/nmcspadden-recipes/blob/master/PostProcessors/Yo.py""")
+        https://github.com/autopkg/nmcspadden-recipes/blob/master/PostProcessors/Yo.py"""
 
     input_variables = {
         "jss_importer_summary_result": {
             "required": False,
-            "description": ("JSSImporter info dictionary to use to summary.")
+            "description": ("JSSImporter info dictionary to use to summary."),
         },
         "jss_package_updated": {
             "required": False,
-            "description": ("Whether or not item was imported into JSS.")
+            "description": ("Whether or not item was imported into JSS."),
         },
-        "webhook_url": {
-            "required": False,
-            "description": ("Teams webhook.")
-        }
+        "webhook_url": {"required": False, "description": ("Teams webhook.")},
     }
-    output_variables = {
-    }
+    output_variables = {}
 
     __doc__ = description
 
@@ -68,19 +63,24 @@ class TeamsPostJSS(Processor):
         version = self.env.get("jss_importer_summary_result")["data"]["Version"]
         groups = self.env.get("jss_importer_summary_result")["data"]["Groups"]
         policy = self.env.get("jss_importer_summary_result")["data"]["Policy"]
-        jss_server = self.env.get("JSS_URL")       
- 
+        jss_server = self.env.get("JSS_URL")
+
         if not was_imported:
             if name:
                 teams_text = f"Title: **{name}**\
                               \nVersion: **{version}**  \nPolicy: **{policy}**  \nGroups:\
                               **{groups}**"
-                teams_data = {"text": teams_text, "textformat": "markdown",
-                               "title": f"{name} updated on {jss_server}"}
+                teams_data = {
+                    "text": teams_text,
+                    "textformat": "markdown",
+                    "title": f"{name} updated on {jss_server}",
+                }
 
             response = requests.post(webhook_url, json=teams_data)
             if response.status_code != 200:
-                raise ValueError(f"Request to Teams returned an error {response.status_code}, the response is:\n{response.text}")
+                raise ValueError(
+                    f"Request to Teams returned an error {response.status_code}, the response is:\n{response.text}"
+                )
 
 
 if __name__ == "__main__":
