@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Recipe stub for any Processors in this directory</string>
+    <string>Recipe stub for TeamsPostJSS</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.uniofcam-recipes.postprocessors</string>
+    <string>com.github.autopkg.uniofcam-recipes.TeamsPostJSS</string>    
     <key>Input</key>
     <dict/>
     <key>MinimumVersion</key>
