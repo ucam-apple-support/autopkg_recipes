@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Recipe stub for TeamsPostJSS</string>
+    <string>Recipe stub for PostProcessors</string>
     <key>Identifier</key>
     <string>com.github.autopkg.uniofcam-recipes.postprocessors</string>    
     <key>Input</key>
