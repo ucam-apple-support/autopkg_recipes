@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Recipe stub for TeamsPostJSS</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.uniofcam-recipes.TeamsPostJSS</string>    
+    <string>com.github.autopkg.uniofcam-recipes.postprocessors</string>    
     <key>Input</key>
     <dict/>
     <key>MinimumVersion</key>
