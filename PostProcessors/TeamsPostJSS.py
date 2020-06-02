@@ -59,31 +59,36 @@ class TeamsPostJSS(Processor):
 
     def main(self):
         was_imported = self.env.get("jss_package_updated")
+        jss_changed_objects = self.env.get("jss_changed_objects")
         jss_info = self.env.get("jss_importer_summary_result")
         webhook_url = self.env.get("webhook_url")
-
-        name = self.env.get("jss_importer_summary_result")["data"]["Name"]
-        version = self.env.get("jss_importer_summary_result")["data"]["Version"]
-        groups = self.env.get("jss_importer_summary_result")["data"]["Groups"]
-        policy = self.env.get("jss_importer_summary_result")["data"]["Policy"]
+        prod_name = self.env.get("prod_name")
         jss_server = self.env.get("JSS_URL")
+        jss_importer_summary_result = self.env.get("jss_importer_summary_result")
 
-        if not was_imported:
-            if name:
-                teams_text = f"Title: **{name}**\
-                              \nVersion: **{version}**  \nPolicy: **{policy}**  \nGroups:\
-                              **{groups}**"
-                teams_data = {
-                    "text": teams_text,
-                    "textformat": "markdown",
-                    "title": f"{name} updated on {jss_server}",
-                }
+        # name = jss_importer_summary_result["data"]["Name"]
+        version = jss_importer_summary_result["data"]["Version"]
+        groups = jss_importer_summary_result["data"]["Groups"]
+        policy = jss_importer_summary_result["data"]["Policy"]
+        package = jss_importer_summary_result["data"]["Package"]
 
-            response = requests.post(webhook_url, json=teams_data)
-            if response.status_code != 200:
-                raise ValueError(
-                    f"Request to Teams returned an error {response.status_code}, the response is:\n{response.text}"
-                )
+        if jss_changed_objects:
+
+            teams_text = f"Version: **{version}**  \
+                            \nPackage: **{package}**  \
+                            \nPolicy: **{policy}**  \
+                            \nGroups: **{groups}**"
+            teams_data = {
+                "text": teams_text,
+                "textformat": "markdown",
+                "title": f"{prod_name} updated on {jss_server}",
+            }
+
+        response = requests.post(webhook_url, json=teams_data)
+        if response.status_code != 200:
+            raise ValueError(
+                f"Request to Teams returned an error {response.status_code}, the response is:\n{response.text}"
+            )
 
 
 if __name__ == "__main__":
