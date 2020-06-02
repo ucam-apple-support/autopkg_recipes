@@ -84,11 +84,11 @@ class TeamsPostJSS(Processor):
                 "title": f"{prod_name} updated on {jss_server}",
             }
 
-        response = requests.post(webhook_url, json=teams_data)
-        if response.status_code != 200:
-            raise ValueError(
-                f"Request to Teams returned an error {response.status_code}, the response is:\n{response.text}"
-            )
+            response = requests.post(webhook_url, json=teams_data)
+            if response.status_code != 200:
+                raise ValueError(
+                    f"Request to Teams returned an error {response.status_code}, the response is:\n{response.text}"
+                )
 
 
 if __name__ == "__main__":
