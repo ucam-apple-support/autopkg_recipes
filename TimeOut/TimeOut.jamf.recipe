@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of TimeOut and uploads it to Jamf Pro. Appropriate testing groups are created as well as a Self Service policy.</string>
 	<key>Identifier</key>
-	<string>com.github.ucam-apple-support.autopkg_recipes.jamf.TimeOut</string>
+	<string>com.github.ucam-apple-support.jamf.TimeOut</string>
 	<key>Input</key>
 	<dict>
 		<key>CATEGORY</key>
