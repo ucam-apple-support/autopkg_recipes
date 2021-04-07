@@ -1,8 +1,4 @@
 # uniofcam-recipes
-Autopkg recipes from University of Cambridge Apple Support Team.
+Autopkg recipes from University of Cambridge Apple Support Team. These recipes are now `deprecated` and will be removed on 30/04/21. Recipes are now published under the autopkg umbrella. To add the repo:
 
-## To use the PostProcessor
-
-    autopkg repo-add https://github.com/ucam-apple-support/autopkg_recipes.git
-
-    autopkg run --post=com.github.autopkg.ucam-apple-support.postprocessors/TeamsPostJSS --key=webhook_url="https://outlook.office.com/webhook/<rest_of_url>" GoogleChrome.jss.recipe 
+    autopkg repo-add ucam-apple-support-recipes
